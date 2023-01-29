@@ -1,0 +1,95 @@
+<%- include("partials/header") -%>
+
+
+
+<div id="Blocker" >
+  <div class="box text-center" style>
+    <div class="item">
+      <input id="admininput" type="password" name="" value="">
+    </div>
+    <div class="item">
+      <button onclick="Admin()" class="button" type="submit" name="button">Admin</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<h1 id="header" class="text-primary">Scholl Blog</h1>
+
+<div class="row">
+  <div class="">
+    <article class="StartArticle">
+      <h1 class="ContentText text-center">İnfo</h1>
+      <p class="StartingText">
+        <%= startingContent %>
+      </p>
+    </article>
+  </div>
+
+
+<div class="container list-article">
+  <div class="btn-group pull-right" id="switch-view">
+    <button class="ChangeButton btn btn-primary" onclick="change()" >
+      <span class="icon-th-large"></span>
+    </button>
+    <button class="ChangeButton btn btn-primary active">
+      <span class="icon-th-list"></span>
+    </button>
+  </div>
+
+  <div class="clearfix"></div>
+
+<% posts.forEach(function(post){ %>
+
+
+
+    <div class="row">
+      <div class="col-xs-12 article-wrapper">
+        <article>
+          <a href="#" class="aElement more">more</a>
+          <div class="img-wrapper"><img class="randomimg" src="http://lorempixel.com/150/150/nature" alt="" /></div>
+          <h1 class="ContentText"><%= post.title %></h1>
+          <p class="ContentText">
+            <%- post.content.substring(0, 150) + "..." %>
+            <a href="/posts/<%= post._id %>" >Read More</a>
+          </p>
+          <p class="AuthorText" >Author: <%= post.author %> </p>
+        </article>
+      </div>
+
+  <form action="/delete" method="post">
+    <div class="item">
+      <input name="checkbox" type="checkbox" value="<%=post._id%>" onChange="this.form.submit()">
+    </div>
+  </form>
+
+
+
+
+
+<% }); %>
+
+
+ <script type="text/javascript">
+   function noScroll() {
+   window.scrollTo(0, 0);
+   }
+
+   window.addEventListener('scroll', noScroll);
+
+   function Admin(){
+
+     var pass = document.getElementById("admininput").value;
+
+       if(pass == "lyzer61,"){
+         document.getElementById("Blocker").style.display = "none";
+         window.removeEventListener('scroll', noScroll);
+       }
+   }
+
+ </script>
+
+
+<%- include("partials/footer") -%>

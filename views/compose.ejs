@@ -1,0 +1,82 @@
+<%- include("partials/header") -%>
+
+<h1 id="header" class="text-primary" >Out Of Date</h1>
+
+<form class="" action="/compose" method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+
+    <label for="">L'auteur</label>
+    <input class="form-control" type="text" name="postAuthor" minlength="4" autocomplete="off" required>
+
+    <label for="">Le titre</label>
+    <input class="form-control" type="text" name="postTitle" minlength="4" autocomplete="off" required>
+
+    <label for="">Post</label>
+    <textarea class="form-control"  minlength="20" name="postBody" rows="8" cols="80" required></textarea>
+
+    <label for="">Link Attachment (Optional)</label>
+    <input class="form-control" type="url" name="link" minlength="4" autocomplete="off">
+
+    <label for="">Image Attachment (Optional)</label>
+    <label for="file-upload" class="custom-file-upload"> Upload Image</label>
+    <input id="file-upload" type="file" value="" name="image" onchange="previewFile()" >
+
+    <!-- <label for="image">Upload Image</label>
+    <input type="file" id="image"
+           name="image" value="" required> -->
+
+    <div class="text-center imagediv">
+      <img src="" height="300" name="img" alt="">
+    </div>
+
+
+  </div>
+
+  <!-- <button class="btn btn-lg btn-primary form-button form-control" type="submit" name="button"> <p>
+    Publier
+  </p> </button> -->
+
+
+
+
+
+</form>
+
+<script type="text/javascript">
+
+
+  function previewFile() {
+  const preview = document.querySelector('img');
+  const file = document.querySelector('input[type=file]').files[0];
+  const reader = new FileReader();
+
+    const size = Math.round((file.size / 1024));
+
+    if(file.type == "image/png"){
+
+      if(size < 3072){
+        reader.addEventListener("load", function () {
+          // convert image file to base64 string
+          preview.src = reader.result;
+        }, false);
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }else{
+        alert("Image size too big, Please select a file less than 3mb");
+        file = null;
+
+
+      }
+    }else{
+      alert("The file format must be .png ");
+      file = null;
+    }
+}
+
+</script>
+
+
+<%- include("partials/footer") -%>

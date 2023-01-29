@@ -1,0 +1,55 @@
+<%- include("partials/header") -%>
+
+
+<h1 id="header" class="text-primary">11e Notre Blog</h1>
+
+<div class="row">
+  <div class="">
+    <article class="StartArticle">
+      <h1 class="ContentText text-center">İnformations</h1>
+      <p ><%=p1%></p>
+      <p ><%=p2%></p>
+      <p ><%=p3%></p>
+      <p class="StartingText"><%=p4%></p>
+    </article>
+  </div>
+
+
+<div class="container list-article">
+  <div class="btn-group pull-right" id="switch-view">
+    <button class="ChangeButton btn btn-primary" onclick="change()" >
+      <span class="icon-th-large"></span>
+    </button>
+    <button class="ChangeButton btn btn-primary active">
+      <span class="icon-th-list"></span>
+    </button>
+  </div>
+
+  <div class="clearfix"></div>
+
+<% posts.forEach(function(post){  %>
+
+
+    <div class="row">
+      <div class="col-xs-12 article-wrapper">
+        <article>
+          <!-- <a href="#" class="more">more</a> -->
+          <a class="more aElement" href="/posts/<%= post._id %>" >Read More</a>
+          <div class="img-wrapper"><img class="randomimg" src="" alt="" /></div>
+          <h1 class="ContentText"><%= post.title %></h1>
+          <p class="ContentText">
+            <%- post.content.substring(0, 150) + "..." %>
+
+          </p>
+          <p class="AuthorText" >Author: <%= post.author %> </p>
+          <!-- <p class="display-none"> <%= post.link %> </p> -->
+        </article>
+      </div>
+
+
+<% }); %>
+
+
+
+
+<%- include("partials/footer") -%>

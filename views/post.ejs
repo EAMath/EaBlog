@@ -1,0 +1,37 @@
+<%- include("partials/header") -%>
+
+
+
+<div class="row post-row">
+  <div class="col-xs-12 article-wrapper">
+    <article>
+      <div class="img-wrapper"><img class="randomimg" src="http://lorempixel.com/150/150/nature" alt="" /></div>
+      <h1 class="ContentText" ><%=title%></h1>
+      <p class="ContentText"><%=content%></p>
+      <p class="AuthorText">Author: <%=author%></p>
+
+      <% if(link != ""){ %>
+      <p> Attachment: </p> <a class="" href="<%=link%>"> <p class="AuthorText"> <%=link%> </p></a>
+      <% }else{  } %>
+
+
+
+
+    </article>
+
+    <% if(imgname != null){ %>
+
+    <div class="text-center imagediv">
+      <img name="<%=imgname%>" src="data:image/<%=imgtype%>;base64,
+      <%=imgdata.toString('base64')%>">
+    </div>
+
+    <% }else{  } %>
+
+
+  </div>
+
+
+
+
+<%- include("partials/footer") -%>
